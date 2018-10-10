@@ -12,8 +12,8 @@
         快速构建基于kubernetes（K8S）+docker的PAAS平台
     </description>
     <modules>
-
-
+        <module>setup</module>
+        <module>common</module>
     </modules>
 
     <parent>
@@ -28,10 +28,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.date>${maven.build.timestamp}</project.build.date>
         <java.version>1.8</java.version>
+        <kotlin.version>1.2.71</kotlin.version>
+        <kotlin-jackson.version>2.9.7</kotlin-jackson.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-
         <maven.test.skip>true</maven.test.skip>
 
     </properties>
@@ -44,6 +45,31 @@
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-kotlin</artifactId>
+                <version>${kotlin-jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test</artifactId>
+                <version>${kotlin.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <!-- 环境 -->
@@ -76,6 +102,7 @@
     </profiles>
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
